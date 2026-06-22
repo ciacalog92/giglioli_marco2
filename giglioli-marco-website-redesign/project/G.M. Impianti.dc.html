@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:#3f5b76;background:#ffffff;-webkit-font-smoothing:antialiased}
+  ::selection{background:#bdeef2;color:#0e2542}
+  @media(max-width:860px){
+    [data-r="navlinks"]{display:none!important}
+    [data-r="burger"]{display:inline-flex!important}
+  }
+  @keyframes gmfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="overflow-x:hidden">
+
+  <!-- ================= NAV ================= -->
+  <header data-r="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(19,49,90,.08);transition:box-shadow .25s,background .25s">
+    <div style="max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px">
+      <a href="#top" data-target="#top" onClick="{{ onNav }}" style="display:flex;align-items:center;gap:12px;text-decoration:none">
+        <img src="assets/logo.png" alt="G.M. Impianti" style="width:46px;height:46px;border-radius:13px;object-fit:cover;box-shadow:0 4px 12px rgba(19,49,90,.18)">
+        <span style="display:flex;flex-direction:column;line-height:1.05">
+          <span style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.12rem;color:#13315a;letter-spacing:-.01em">G.M. Impianti</span>
+          <span style="font-size:.72rem;font-weight:600;letter-spacing:.04em;color:#7d93a8;text-transform:uppercase">di Giglioli Marco</span>
+        </span>
+      </a>
+      <nav data-r="navlinks" style="display:flex;align-items:center;gap:30px">
+        <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="text-decoration:none;color:#33506e;font-weight:600;font-size:.96rem" style-hover="color:#14a5b8">Servizi</a>
+        <a href="#perche" data-target="#perche" onClick="{{ onNav }}" style="text-decoration:none;color:#33506e;font-weight:600;font-size:.96rem" style-hover="color:#14a5b8">Perché noi</a>
+        <a href="#processo" data-target="#processo" onClick="{{ onNav }}" style="text-decoration:none;color:#33506e;font-weight:600;font-size:.96rem" style-hover="color:#14a5b8">Come lavoriamo</a>
+        <a href="#lavori" data-target="#lavori" onClick="{{ onNav }}" style="text-decoration:none;color:#33506e;font-weight:600;font-size:.96rem" style-hover="color:#14a5b8">Lavori</a>
+        <a href="#contatti" data-target="#contatti" onClick="{{ onNav }}" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:700;font-size:.95rem;padding:11px 22px;border-radius:999px;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 8px 20px rgba(20,150,170,.28)" style-hover="transform:translateY(-2px)">Preventivo gratuito</a>
+      </nav>
+      <button data-r="burger" onClick="{{ toggleMobile }}" aria-label="Menu" style="display:none;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;border:1px solid rgba(19,49,90,.12);background:#fff;cursor:pointer;color:#13315a">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+    <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:8px 24px 20px;display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(19,49,90,.08);background:#fff">
+        <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="text-decoration:none;color:#13315a;font-weight:600;padding:12px 6px;border-bottom:1px solid #eef4f9">Servizi</a>
+        <a href="#perche" data-target="#perche" onClick="{{ onNav }}" style="text-decoration:none;color:#13315a;font-weight:600;padding:12px 6px;border-bottom:1px solid #eef4f9">Perché noi</a>
+        <a href="#processo" data-target="#processo" onClick="{{ onNav }}" style="text-decoration:none;color:#13315a;font-weight:600;padding:12px 6px;border-bottom:1px solid #eef4f9">Come lavoriamo</a>
+        <a href="#lavori" data-target="#lavori" onClick="{{ onNav }}" style="text-decoration:none;color:#13315a;font-weight:600;padding:12px 6px;border-bottom:1px solid #eef4f9">Lavori</a>
+        <a href="#contatti" data-target="#contatti" onClick="{{ onNav }}" style="margin-top:8px;text-align:center;text-decoration:none;color:#fff;font-weight:700;padding:13px;border-radius:999px;background:linear-gradient(135deg,#1668a4,#14b3c2)">Preventivo gratuito</a>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section id="top" style="position:relative;background:linear-gradient(90deg,#d7edf5 0%,#9ee0fd 50%,#d7edf5 100%);padding-top:70px;overflow:hidden">
+    <div data-reveal="" style="width:100%">
+      <img src="assets/hero-banner.png" alt="G.M. Impianti — di Giglioli Marco" style="width:100%;height:auto;display:block">
+    </div>
+    <div data-reveal="" data-reveal-delay="100" style="max-width:880px;margin:0 auto;text-align:center;padding:14px 24px 78px">
+      <span style="display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;background:rgba(255,255,255,.7);color:#0f7e8c;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase">
+        <span style="width:7px;height:7px;border-radius:50%;background:#14b3c2;display:inline-block"></span>{{ c.heroEyebrow }}
+      </span>
+      <h1 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(2rem,5vw,3.4rem);line-height:1.06;letter-spacing:-.02em;margin:20px 0 0">{{ c.heroTitleA }} {{ c.heroTitleB }}<span style="background:linear-gradient(120deg,#1b5e96,#0f7e8c);-webkit-background-clip:text;background-clip:text;color:transparent">{{ c.heroHL }}</span>.</h1>
+      <p style="font-size:1.12rem;line-height:1.65;color:#37536f;margin:20px auto 0;max-width:600px">{{ c.heroSub }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;justify-content:center">
+        <a href="#contatti" data-target="#contatti" onClick="{{ onNav }}" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1rem;padding:15px 28px;border-radius:999px;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 12px 26px rgba(20,150,170,.3)" style-hover="transform:translateY(-2px)">Richiedi un preventivo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#13315a;font-weight:700;font-size:1rem;padding:15px 26px;border-radius:999px;background:#fff;border:1.5px solid #cfe3f0" style-hover="border-color:#14b3c2;color:#14a5b8">Scopri i servizi</a>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:34px;justify-content:center">
+        <div style="display:flex;align-items:center;gap:10px;color:#33506e;font-weight:600;font-size:.95rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f7e8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Pronto intervento</div>
+        <div style="display:flex;align-items:center;gap:10px;color:#33506e;font-weight:600;font-size:.95rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f7e8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Tecnici certificati</div>
+        <div style="display:flex;align-items:center;gap:10px;color:#33506e;font-weight:600;font-size:.95rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f7e8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Preventivi gratuiti</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- wave divider -->
+  <div style="line-height:0;margin-top:-2px"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" style="width:100%;height:64px;display:block"><path d="M0,40 C240,90 480,90 720,55 C960,20 1200,20 1440,55 L1440,90 L0,90 Z" fill="#f2f9fe"></path></svg></div>
+
+  <!-- ================= SERVIZI ================= -->
+  <section id="servizi" style="background:#f2f9fe;padding:30px 24px 86px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal="" style="max-width:680px">
+        <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#14a5b8">Cosa facciamo</span>
+        <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 0">Tutti gli impianti, un solo referente</h2>
+        <p style="font-size:1.06rem;line-height:1.6;color:#46627c;margin:16px 0 0">Dalla nuova installazione alla manutenzione programmata, seguiamo ogni impianto della tua casa o della tua attività con cura artigianale e tecnologie aggiornate.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px">
+
+        <div data-reveal="" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 5 6.5 8.2 6.5 11.4A6.5 6.5 0 0 1 5.5 14.4C5.5 11.2 8 8 12 3z"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s1t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s1d }}</p>
+        </div>
+
+        <div data-reveal="" data-reveal-delay="80" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s2t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s2d }}</p>
+        </div>
+
+        <div data-reveal="" data-reveal-delay="160" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="1.5"></rect><path d="M3 10h18M3 14h18M9 6v12M15 6v12"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s3t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s3d }}</p>
+        </div>
+
+        <div data-reveal="" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s4t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s4d }}</p>
+        </div>
+
+        <div data-reveal="" data-reveal-delay="80" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c2.2-2.2 4.4-2.2 6.6 0s4.4 2.2 6.6 0 4.4-2.2 6.6 0M3 14c2.2-2.2 4.4-2.2 6.6 0s4.4 2.2 6.6 0 4.4-2.2 6.6 0"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s5t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s5d }}</p>
+        </div>
+
+        <div data-reveal="" data-reveal-delay="160" style="background:#fff;border:1px solid #e6f1f8;border-radius:20px;padding:30px;transition:transform .25s,box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 22px 44px rgba(19,49,90,.12);border-color:#bfe7ec">
+          <div style="width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 7.5a4 4 0 0 1-5.2 5.2L5 18l1 1 5.3-5.3a4 4 0 0 0 5.2-5.2l-2.3 2.3-2-2 2.3-2.3z"></path></svg></div>
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.22rem;margin:20px 0 0">{{ c.s6t }}</h3>
+          <p style="font-size:.97rem;line-height:1.6;color:#5a748d;margin:10px 0 0">{{ c.s6d }}</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PERCHÉ NOI ================= -->
+  <section id="perche" style="padding:90px 24px">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:54px;align-items:center">
+      <div data-reveal="" style="position:relative">
+        <div style="position:absolute;inset:auto auto -16px -16px;width:130px;height:130px;border-radius:24px;background:linear-gradient(135deg,#1668a4,#14b3c2);opacity:.12"></div>
+        <div style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 26px 60px rgba(19,49,90,.18);border:8px solid #fff">
+          <sc-if value="{{ hasPerche }}" hint-placeholder-val="">
+            <div style="aspect-ratio:5/4;position:relative">{{ percheImg }}</div>
+          </sc-if>
+          <sc-if value="{{ noPerche }}" hint-placeholder-val="{{ true }}">
+            <div style="aspect-ratio:5/4;background:repeating-linear-gradient(135deg,#e7f3fb 0 16px,#dcecf7 16px 32px);display:flex;align-items:center;justify-content:center">
+              <span style="font-family:'Manrope';font-weight:600;font-size:.72rem;letter-spacing:.08em;color:#7d93a8;background:rgba(255,255,255,.85);padding:6px 12px;border-radius:8px">FOTO — tecnico / impianto</span>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+      <div data-reveal="" data-reveal-delay="100">
+        <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#14a5b8">Perché sceglierci</span>
+        <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 22px">Affidabilità artigiana,<br>visione moderna</h2>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;gap:16px"><div style="flex:none;width:46px;height:46px;border-radius:13px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"></path><path d="M3 12c2.5-4 6-6 9-6s6.5 2 9 6c-2.5 4-6 6-9 6s-6.5-2-9-6z"></path></svg></div><div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem;margin:2px 0 4px">Un unico interlocutore</h3><p style="font-size:.97rem;line-height:1.55;color:#5a748d;margin:0">Idraulica, riscaldamento, elettrico e fotovoltaico coordinati da una sola persona di fiducia.</p></div></div>
+          <div style="display:flex;gap:16px"><div style="flex:none;width:46px;height:46px;border-radius:13px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem;margin:2px 0 4px">Materiali certificati</h3><p style="font-size:.97rem;line-height:1.55;color:#5a748d;margin:0">Componenti di marchi affidabili e installazioni conformi alle normative vigenti.</p></div></div>
+          <div style="display:flex;gap:16px"><div style="flex:none;width:46px;height:46px;border-radius:13px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div><div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem;margin:2px 0 4px">Pronto intervento</h3><p style="font-size:.97rem;line-height:1.55;color:#5a748d;margin:0">Interventi rapidi su guasti e manutenzioni programmate per non lasciarti mai a piedi.</p></div></div>
+          <div style="display:flex;gap:16px"><div style="flex:none;width:46px;height:46px;border-radius:13px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3 4 13h6l-1 8 8-11h-6z"></path></svg></div><div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem;margin:2px 0 4px">Efficienza e risparmio</h3><p style="font-size:.97rem;line-height:1.55;color:#5a748d;margin:0">Soluzioni pensate per ridurre i consumi e l'impatto ambientale, con incentivi quando disponibili.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESSO ================= -->
+  <section id="processo" style="background:linear-gradient(180deg,#e9f5fc,#d3eafa);padding:88px 24px;color:#33506e;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-80px;right:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(20,179,194,.25),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative">
+      <div data-reveal="" style="max-width:640px">
+        <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#0f7e8c">Come lavoriamo</span>
+        <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 0">Quattro passi, zero sorprese</h2>
+        <p style="font-size:1.06rem;line-height:1.6;color:#4a6b90;margin:16px 0 0">Un metodo chiaro dal primo contatto all'assistenza, così sai sempre cosa aspettarti.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:44px">
+        <div data-reveal="" style="background:rgba(255,255,255,.7);border:1px solid rgba(20,118,140,.16);border-radius:20px;padding:28px"><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:2.2rem;color:#0f7e8c;line-height:1">01</div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.16rem;margin:14px 0 8px">Sopralluogo e ascolto</h3><p style="font-size:.95rem;line-height:1.55;color:#4a6b90;margin:0">Veniamo da te, valutiamo gli spazi e capiamo le tue esigenze reali.</p></div>
+        <div data-reveal="" data-reveal-delay="80" style="background:rgba(255,255,255,.7);border:1px solid rgba(20,118,140,.16);border-radius:20px;padding:28px"><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:2.2rem;color:#0f7e8c;line-height:1">02</div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.16rem;margin:14px 0 8px">Preventivo chiaro</h3><p style="font-size:.95rem;line-height:1.55;color:#4a6b90;margin:0">Un'offerta dettagliata e trasparente, senza costi nascosti.</p></div>
+        <div data-reveal="" data-reveal-delay="160" style="background:rgba(255,255,255,.7);border:1px solid rgba(20,118,140,.16);border-radius:20px;padding:28px"><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:2.2rem;color:#0f7e8c;line-height:1">03</div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.16rem;margin:14px 0 8px">Installazione a regola d'arte</h3><p style="font-size:.95rem;line-height:1.55;color:#4a6b90;margin:0">Lavori puliti, nei tempi concordati e con materiali certificati.</p></div>
+        <div data-reveal="" data-reveal-delay="240" style="background:rgba(255,255,255,.7);border:1px solid rgba(20,118,140,.16);border-radius:20px;padding:28px"><div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:2.2rem;color:#0f7e8c;line-height:1">04</div><h3 style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.16rem;margin:14px 0 8px">Assistenza e manutenzione</h3><p style="font-size:.95rem;line-height:1.55;color:#4a6b90;margin:0">Ti seguiamo nel tempo con controlli e pronto intervento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LAVORI ================= -->
+  <section id="lavori" style="padding:90px 24px;background:#f2f9fe">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between">
+        <div style="max-width:640px">
+          <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#14a5b8">Lavori realizzati</span>
+          <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 0">Alcuni dei nostri interventi</h2>
+        </div>
+        
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:38px">
+        <sc-for list="{{ lavori }}" as="lav" hint-placeholder-count="6">
+          <div data-reveal="" data-reveal-delay="{{ lav.delay }}" style="border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(19,49,90,.1);background:#fff">
+            <sc-if value="{{ lav.has }}" hint-placeholder-val="">
+              <div style="aspect-ratio:4/3;position:relative">{{ lav.imgEl }}
+                <div style="position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;background:linear-gradient(180deg,transparent,rgba(8,24,44,.78));display:flex;align-items:center;gap:9px">
+                  <span style="flex:none;width:8px;height:8px;border-radius:50%;background:#14b3c2"></span>
+                  <span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:1.12rem;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.35);line-height:1.2">{{ lav.caption }}</span>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ lav.empty }}" hint-placeholder-val="{{ true }}">
+              <div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#e7f3fb 0 14px,#dcecf7 14px 28px);display:flex;align-items:center;justify-content:center"><span style="font-family:'Manrope';font-weight:600;font-size:.72rem;letter-spacing:.06em;color:#7d93a8;background:rgba(255,255,255,.85);padding:5px 11px;border-radius:7px">{{ lav.label }}</span></div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PREVENTIVO ================= -->
+  <section id="preventivo" style="padding:90px 24px;background:linear-gradient(180deg,#e9f5fc,#d3eafa);color:#33506e;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-90px;left:-70px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(20,179,194,.25),transparent 70%);pointer-events:none"></div>
+    <div style="max-width:1080px;margin:0 auto;position:relative">
+      <div data-reveal="" style="text-align:center;max-width:680px;margin:0 auto">
+        <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#0f7e8c">Configura la tua richiesta</span>
+        <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 0">Raccontaci il tuo progetto in 30 secondi</h2>
+        <p style="font-size:1.06rem;line-height:1.6;color:#4a6b90;margin:16px 0 0">Scegli il tipo di lavoro e rispondi a poche domande: prepariamo un preventivo più preciso e ti ricontattiamo con le idee chiare. Senza impegno.</p>
+      </div>
+
+      <div data-reveal="" data-reveal-delay="80" style="background:#fff;border-radius:24px;box-shadow:0 30px 70px rgba(8,24,44,.34);margin-top:40px;overflow:hidden;color:#13315a">
+        <sc-if value="{{ quoteNoService }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:30px">
+            <div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.15rem;color:#13315a;margin:0 0 4px">1. Che tipo di lavoro ti serve?</div>
+            <p style="font-size:.93rem;color:#7d93a8;margin:0 0 20px">Seleziona una categoria per iniziare.</p>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+              <sc-for list="{{ quoteServices }}" as="s" hint-placeholder-count="6">
+                <button data-key="{{ s.key }}" onClick="{{ onQuotePick }}" style="display:flex;align-items:center;gap:14px;text-align:left;font:inherit;cursor:pointer;background:#f8fbfe;border:1.5px solid #e6f1f8;border-radius:16px;padding:18px;transition:transform .18s,border-color .18s,box-shadow .18s" style-hover="transform:translateY(-3px);border-color:#14b3c2;box-shadow:0 12px 26px rgba(20,150,170,.16)">
+                  <span style="flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg></span>
+                  <span style="line-height:1.3"><span style="display:block;font-family:'Plus Jakarta Sans';font-weight:700;font-size:1.02rem;color:#13315a">{{ s.label }}</span><span style="display:block;font-size:.84rem;color:#7d93a8;margin-top:2px">{{ s.desc }}</span></span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ quoteHasService }}" hint-placeholder-val="">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))">
+            <div style="padding:30px;border-right:1px solid #eef4f9">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px">
+                <div style="font-family:'Plus Jakarta Sans';font-weight:800;font-size:1.12rem;color:#13315a">{{ quoteCurLabel }}</div>
+                <button onClick="{{ onQuoteReset }}" style="display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.85rem;font-weight:700;color:#0f7e8c;background:#e3f4f7;border:none;border-radius:999px;padding:7px 13px;cursor:pointer" style-hover="background:#d3edf1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-7 3.3M3 4v4h4"></path></svg>Cambia</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:24px">
+                <sc-for list="{{ quoteQuestions }}" as="q" hint-placeholder-count="2">
+                  <div>
+                    <div style="font-size:.92rem;font-weight:700;color:#33506e;margin-bottom:11px">{{ q.q }}</div>
+                    <div style="display:flex;flex-direction:column;gap:9px">
+                      <sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="3">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="">
+                          <button data-qid="{{ o.qid }}" data-idx="{{ o.idx }}" onClick="{{ onQuoteOpt }}" style="display:flex;align-items:center;gap:11px;text-align:left;width:100%;font:inherit;font-size:.95rem;font-weight:600;color:#0c4a63;cursor:pointer;background:#e3f4f7;border:1.5px solid #14b3c2;border-radius:13px;padding:13px 15px"><span style="flex:none;width:20px;height:20px;border-radius:50%;background:#14b3c2;display:flex;align-items:center;justify-content:center;color:#fff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>{{ o.t }}</button>
+                        </sc-if>
+                        <sc-if value="{{ o.unsel }}" hint-placeholder-val="{{ true }}">
+                          <button data-qid="{{ o.qid }}" data-idx="{{ o.idx }}" onClick="{{ onQuoteOpt }}" style="display:flex;align-items:center;gap:11px;text-align:left;width:100%;font:inherit;font-size:.95rem;font-weight:600;color:#33506e;cursor:pointer;background:#fff;border:1.5px solid #dce9f2;border-radius:13px;padding:13px 15px;transition:border-color .15s,background .15s" style-hover="border-color:#9bd7df;background:#f8fbfe"><span style="flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #cddbe8"></span>{{ o.t }}</button>
+                        </sc-if>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+                <div>
+                  <div style="font-size:.92rem;font-weight:700;color:#33506e;margin-bottom:11px">Vuoi aggiungere dettagli? <span style="font-weight:600;color:#9aabbd">(facoltativo)</span></div>
+                  <textarea value="{{ quoteNote }}" onChange="{{ onQuoteNote }}" rows="3" placeholder="Es. marca dell'impianto esistente, metratura, problema riscontrato, foto disponibili..." style="width:100%;font:inherit;font-size:.95rem;padding:12px 14px;border-radius:13px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:30px;background:#f8fbfe;display:flex;flex-direction:column">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px">
+                <div style="font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7d93a8">La tua richiesta</div>
+                <span style="font-size:.78rem;font-weight:700;color:#0f7e8c;background:#e3f4f7;border-radius:999px;padding:4px 11px">{{ quoteProgress }}</span>
+              </div>
+              <sc-if value="{{ quoteEmptySummary }}" hint-placeholder-val="{{ true }}">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 6px;color:#9aabbd">
+                  <div style="width:56px;height:56px;border-radius:16px;background:#e9f2fa;display:flex;align-items:center;justify-content:center;color:#9bb6cd;margin-bottom:14px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 13h6M9 17h4"></path></svg></div>
+                  <div style="font-size:.95rem;line-height:1.5;max-width:230px">Rispondi alle domande: qui costruiamo il riepilogo da inviarci.</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ quoteHasSummary }}" hint-placeholder-val="">
+                <div style="flex:1;display:flex;flex-direction:column">
+                  <div style="display:flex;flex-direction:column;gap:11px">
+                    <div style="display:flex;align-items:center;gap:9px"><span style="flex:none;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#e3f4f7,#d3edf1);display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Plus Jakarta Sans';font-weight:700;font-size:1.02rem;color:#13315a">{{ quoteCurLabel }}</span></div>
+                    <sc-for list="{{ quoteSummary }}" as="row" hint-placeholder-count="3">
+                      <div style="display:flex;justify-content:space-between;gap:14px;font-size:.9rem;padding:9px 0;border-top:1px solid #eaf1f8">
+                        <span style="color:#7d93a8">{{ row.q }}</span>
+                        <span style="font-weight:700;color:#23415e;text-align:right">{{ row.a }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <p style="font-size:.82rem;line-height:1.55;color:#9aabbd;margin:16px 0 0">Invieremo questi dettagli al nostro team: ti ricontattiamo per un sopralluogo e un preventivo su misura, gratuito e senza impegno.</p>
+                  <sc-if value="{{ quoteReady }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ onQuoteRequest }}" style="margin-top:18px;display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;font:inherit;font-weight:700;font-size:1rem;color:#fff;padding:15px;border-radius:13px;border:none;cursor:pointer;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 12px 26px rgba(20,150,170,.3)" style-hover="transform:translateY(-2px)">Invia la richiesta<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+                  </sc-if>
+                  <sc-if value="{{ quoteIncomplete }}" hint-placeholder-val="">
+                    <div style="margin-top:18px;text-align:center;font-size:.86rem;font-weight:600;color:#9aabbd;background:#eef5fb;border-radius:11px;padding:12px">Rispondi a tutte le domande per inviare la richiesta.</div>
+                  </sc-if>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATTI ================= -->
+  <section id="contatti" style="padding:90px 24px">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:48px;align-items:start">
+      <div data-reveal="">
+        <span style="font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#14a5b8">Contatti</span>
+        <h2 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:clamp(1.8rem,3.8vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:12px 0 0">Parlaci del tuo progetto</h2>
+        <p style="font-size:1.06rem;line-height:1.6;color:#46627c;margin:16px 0 30px">Raccontaci di cosa hai bisogno: ti ricontattiamo per un sopralluogo e un preventivo gratuito, senza impegno.</p>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <a href="tel:{{ phoneFissoTel }}" style="display:flex;align-items:center;gap:15px;text-decoration:none"><div style="flex:none;width:50px;height:50px;border-radius:14px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></div><div><div style="font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7d93a8">Telefono fisso</div><div style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem">{{ c.phoneFisso }}</div></div></a>
+          <a href="mailto:{{ c.email }}" style="display:flex;align-items:center;gap:15px;text-decoration:none"><div style="flex:none;width:50px;height:50px;border-radius:14px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></div><div><div style="font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7d93a8">Email</div><div style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem">{{ c.email }}</div></div></a>
+          <div style="display:flex;align-items:center;gap:15px"><div style="flex:none;width:50px;height:50px;border-radius:14px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></div><div><div style="font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7d93a8">Zona di attività</div><div style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:1.1rem">{{ c.zona }}</div></div></div>
+        </div>
+      </div>
+      <div data-reveal="" data-reveal-delay="100" style="background:#fff;border:1px solid #e6f1f8;border-radius:24px;padding:34px;box-shadow:0 22px 50px rgba(19,49,90,.1)">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 10px">
+            <div style="width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,#1668a4,#14b3c2);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+            <h3 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.5rem;margin:20px 0 8px">Richiesta inviata!</h3>
+            <p style="font-size:1rem;line-height:1.6;color:#5a748d;margin:0;max-width:340px">Grazie, ti ricontattiamo al più presto. Per urgenze puoi chiamarci direttamente al numero qui accanto.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onSubmit }}">
+          <h3 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.3rem;margin:0 0 20px">Richiedi un preventivo</h3>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:.86rem;font-weight:700;color:#33506e">Nome e cognome</span><input name="nome" value="{{ form.nome }}" onChange="{{ onField }}" placeholder="Mario Rossi" style="font:inherit;font-size:1rem;padding:13px 15px;border-radius:12px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+            <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:.86rem;font-weight:700;color:#33506e">Email o telefono</span><input name="contatto" value="{{ form.contatto }}" onChange="{{ onField }}" placeholder="email@esempio.it / +39 ..." style="font:inherit;font-size:1rem;padding:13px 15px;border-radius:12px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+            <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:.86rem;font-weight:700;color:#33506e">Di cosa hai bisogno?</span>
+              <select name="servizio" value="{{ form.servizio }}" onChange="{{ onField }}" style="font:inherit;font-size:1rem;padding:13px 15px;border-radius:12px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff">
+                <option value="">Seleziona un servizio</option>
+                <option>Impianti idraulici / termoidraulici</option>
+                <option>Riscaldamento e climatizzazione</option>
+                <option>Fotovoltaico ed energie rinnovabili</option>
+                <option>Impianti elettrici</option>
+                <option>Trattamento acque / piscine</option>
+                <option>Manutenzione e assistenza</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px"><span style="font-size:.86rem;font-weight:700;color:#33506e">Messaggio</span><textarea name="messaggio" value="{{ form.messaggio }}" onChange="{{ onField }}" rows="4" placeholder="Descrivi brevemente il progetto o il problema..." style="font:inherit;font-size:1rem;padding:13px 15px;border-radius:12px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2;background:#fff"></textarea></label>
+            <sc-if value="{{ error }}" hint-placeholder-val="">
+              <div style="font-size:.9rem;font-weight:600;color:#c0392b;background:#fdecea;border-radius:10px;padding:11px 14px">{{ error }}</div>
+            </sc-if>
+            <button type="submit" style="margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;font:inherit;font-weight:700;font-size:1.02rem;color:#fff;padding:15px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 12px 26px rgba(20,150,170,.3)" style-hover="transform:translateY(-2px)">Invia richiesta
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+            <p style="font-size:.8rem;color:#9aabbd;text-align:center;margin:2px 0 0">Inviando accetti di essere ricontattato. Nessuno spam.</p>
+          </div>
+        </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer style="background:linear-gradient(180deg,#e9f5fc,#d3eafa);color:#4a6b90;padding:54px 24px 30px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px"><img src="assets/logo.png" alt="G.M. Impianti" style="width:48px;height:48px;border-radius:13px"><div style="line-height:1.1"><div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.12rem">G.M. Impianti</div><div style="font-size:.74rem;font-weight:600;letter-spacing:.04em;color:#5a748d;text-transform:uppercase">di Giglioli Marco</div></div></div>
+          <p style="font-size:.95rem;line-height:1.6;color:#4a6b90;margin:18px 0 0;max-width:300px">Impianti idraulici, termici, elettrici e fotovoltaici. Installazione, manutenzione e pronto intervento.</p>
+        </div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:.95rem;margin-bottom:14px">Servizi</div>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:.93rem">
+            <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="color:#33506e;text-decoration:none" style-hover="color:#0f7e8c">Idraulica e termoidraulica</a>
+            <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="color:#33506e;text-decoration:none" style-hover="color:#0f7e8c">Riscaldamento e clima</a>
+            <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="color:#33506e;text-decoration:none" style-hover="color:#0f7e8c">Fotovoltaico</a>
+            <a href="#servizi" data-target="#servizi" onClick="{{ onNav }}" style="color:#33506e;text-decoration:none" style-hover="color:#0f7e8c">Manutenzione</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans';font-weight:700;color:#13315a;font-size:.95rem;margin-bottom:14px">Contatti</div>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:.93rem;color:#4a6b90">
+            <span>Tel. {{ c.phoneFisso }}</span>
+            <span>{{ c.email }}</span>
+            <span>P.IVA {{ c.piva }}</span>
+            <a href="#contatti" data-target="#contatti" onClick="{{ onNav }}" style="color:#0f7e8c;text-decoration:none;font-weight:700;margin-top:4px">Richiedi preventivo →</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(19,49,90,.12);margin-top:36px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;font-size:.85rem;color:#6a7f95">
+        <span>© {{ year }} G.M. Impianti di Giglioli Marco. Tutti i diritti riservati.</span>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span>Area Riservata</span>
+          <button onClick="{{ openAdmin }}" title="Area riservata" aria-label="Area riservata" style="background:none;border:none;cursor:pointer;color:#9aabbd;opacity:.5;padding:4px;display:inline-flex;align-items:center;transition:opacity .2s,color .2s" style-hover="opacity:1;color:#0f7e8c">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= ADMIN ================= -->
+  <sc-if value="{{ adminOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:100;background:rgba(8,24,44,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto">
+      <div style="width:100%;max-width:720px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.4);margin:auto">
+        <div style="position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #eef4f9;border-radius:20px 20px 0 0;padding:18px 24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#1668a4,#14b3c2);display:flex;align-items:center;justify-content:center;color:#fff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></div>
+            <div style="line-height:1.15"><div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.12rem">Pannello di gestione</div><div style="font-size:.78rem;font-weight:600;color:#7d93a8">Modifica i contenuti del sito</div></div>
+          </div>
+          <button onClick="{{ closeAdmin }}" aria-label="Chiudi" style="width:38px;height:38px;border-radius:10px;border:1px solid #e6f1f8;background:#f8fbfe;cursor:pointer;color:#33506e;display:flex;align-items:center;justify-content:center" style-hover="background:#eef4f9"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </div>
+
+        <div style="padding:24px">
+          <sc-if value="{{ notAuthed }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ onLogin }}" style="max-width:360px;margin:18px auto;text-align:center">
+              <div style="width:62px;height:62px;border-radius:18px;background:#e3f4f7;display:flex;align-items:center;justify-content:center;color:#0f7e8c;margin:0 auto 16px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></div>
+              <h3 style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.3rem;margin:0 0 6px">Area riservata</h3>
+              <p style="font-size:.95rem;color:#5a748d;line-height:1.5;margin:0 0 18px">Inserisci la password per modificare i contenuti del sito.</p>
+              <input type="password" value="{{ passInput }}" onChange="{{ onPassField }}" placeholder="Password" style="width:100%;font:inherit;font-size:1rem;padding:13px 15px;border-radius:12px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none;text-align:center" style-focus="border-color:#14b3c2;background:#fff">
+              <sc-if value="{{ authError }}" hint-placeholder-val="">
+                <div style="font-size:.88rem;font-weight:600;color:#c0392b;background:#fdecea;border-radius:10px;padding:10px;margin-top:12px">{{ authError }}</div>
+              </sc-if>
+              <button type="submit" style="margin-top:16px;width:100%;font:inherit;font-weight:700;font-size:1rem;color:#fff;padding:14px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 12px 26px rgba(20,150,170,.28)" style-hover="transform:translateY(-2px)">Accedi</button>
+              <p style="font-size:.8rem;color:#9aabbd;margin:14px 0 0">Password predefinita: <b style="color:#5a748d">admin</b> — puoi cambiarla nel codice.</p>
+            </form>
+          </sc-if>
+
+          <sc-if value="{{ authed }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <p style="font-size:.95rem;color:#5a748d;line-height:1.55;margin:0 0 6px;background:#f2f9fe;border:1px solid #e6f1f8;border-radius:12px;padding:13px 15px">Modifica i testi e premi <b style="color:#13315a">Salva</b>. Le modifiche restano memorizzate in questo browser e si applicano subito al sito.</p>
+
+              <div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.05rem;margin:24px 0 14px;padding-bottom:8px;border-bottom:2px solid #e6f1f8">Sezione Hero</div>
+              <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Etichetta (in alto)</span><input name="heroEyebrow" value="{{ draft.heroEyebrow }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+              <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Titolo — prima riga</span><input name="heroTitleA" value="{{ draft.heroTitleA }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+              <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Titolo — seconda riga</span><input name="heroTitleB" value="{{ draft.heroTitleB }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+              <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Titolo — parola evidenziata</span><input name="heroHL" value="{{ draft.heroHL }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+              <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Testo descrittivo</span><textarea name="heroSub" value="{{ draft.heroSub }}" onChange="{{ onAdminField }}" rows="3" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2;background:#fff"></textarea></label>
+
+              <div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.05rem;margin:24px 0 14px;padding-bottom:8px;border-bottom:2px solid #e6f1f8">Contatti</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 16px">
+                <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Telefono fisso</span><input name="phoneFisso" value="{{ draft.phoneFisso }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+                <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Cellulare / WhatsApp</span><input name="phone" value="{{ draft.phone }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+                <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Email</span><input name="email" value="{{ draft.email }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+                <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">P.IVA</span><input name="piva" value="{{ draft.piva }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+                <label style="display:block;margin-bottom:14px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Zona di attività</span><input name="zona" value="{{ draft.zona }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border-radius:10px;border:1.5px solid #dce9f2;background:#f8fbfe;color:#13315a;outline:none" style-focus="border-color:#14b3c2;background:#fff"></label>
+              </div>
+
+              <div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.05rem;margin:24px 0 14px;padding-bottom:8px;border-bottom:2px solid #e6f1f8">Servizi</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 1 — titolo</span><input name="s1t" value="{{ draft.s1t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s1d" value="{{ draft.s1d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 2 — titolo</span><input name="s2t" value="{{ draft.s2t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s2d" value="{{ draft.s2d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 3 — titolo</span><input name="s3t" value="{{ draft.s3t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s3d" value="{{ draft.s3d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 4 — titolo</span><input name="s4t" value="{{ draft.s4t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s4d" value="{{ draft.s4d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 5 — titolo</span><input name="s5t" value="{{ draft.s5t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s5d" value="{{ draft.s5d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+                <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px"><label style="display:block;margin-bottom:10px"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Servizio 6 — titolo</span><input name="s6t" value="{{ draft.s6t }}" onChange="{{ onAdminField }}" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none" style-focus="border-color:#14b3c2"></label><label style="display:block"><span style="display:block;font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:6px">Descrizione</span><textarea name="s6d" value="{{ draft.s6d }}" onChange="{{ onAdminField }}" rows="2" style="width:100%;font:inherit;font-size:.95rem;padding:10px 12px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;color:#13315a;outline:none;resize:vertical" style-focus="border-color:#14b3c2"></textarea></label></div>
+              </div>
+
+              <div style="font-family:'Plus Jakarta Sans';font-weight:800;color:#13315a;font-size:1.05rem;margin:24px 0 6px;padding-bottom:8px;border-bottom:2px solid #e6f1f8">Immagini</div>
+              <p style="font-size:.88rem;color:#7d93a8;line-height:1.5;margin:0 0 14px">Carica le foto dei tuoi lavori e dell'attività. Le immagini vengono ridimensionate e salvate in questo browser.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px">
+                <sc-for list="{{ imgFields }}" as="f" hint-placeholder-count="8">
+                  <div style="background:#f8fbfe;border:1px solid #e6f1f8;border-radius:12px;padding:14px">
+                    <div style="font-size:.8rem;font-weight:700;color:#33506e;margin-bottom:10px">{{ f.label }}</div>
+                    <sc-if value="{{ f.val }}" hint-placeholder-val="">
+                      <div style="border-radius:9px;overflow:hidden;margin-bottom:10px;border:1px solid #e6f1f8">{{ f.valEl }}</div>
+                    </sc-if>
+                    <sc-if value="{{ f.empty }}" hint-placeholder-val="{{ true }}">
+                      <div style="height:118px;border-radius:9px;margin-bottom:10px;background:repeating-linear-gradient(135deg,#eef5fb 0 12px,#e4eef7 12px 24px);display:flex;align-items:center;justify-content:center;color:#9aabbd;font-size:.78rem;font-weight:600">Nessuna foto</div>
+                    </sc-if>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                      <label style="display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:700;color:#0f7e8c;background:#e3f4f7;padding:9px 13px;border-radius:9px;cursor:pointer" style-hover="background:#d3edf1">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>
+                        Carica<input name="{{ f.key }}" type="file" accept="image/*" onChange="{{ onAdminImage }}" style="display:none">
+                      </label>
+                      <sc-if value="{{ f.val }}" hint-placeholder-val="">
+                        <button type="button" data-key="{{ f.key }}" onClick="{{ onAdminImageRemove }}" style="font:inherit;font-size:.85rem;font-weight:700;color:#33506e;padding:9px 13px;border-radius:9px;border:1.5px solid #dce9f2;background:#fff;cursor:pointer" style-hover="border-color:#c0392b;color:#c0392b">Rimuovi</button>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="position:sticky;bottom:0;background:#fff;border-top:1px solid #eef4f9;margin:24px -24px -24px;padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;border-radius:0 0 20px 20px">
+                <button onClick="{{ onAdminSave }}" style="display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;font-size:.97rem;color:#fff;padding:12px 22px;border-radius:11px;border:none;cursor:pointer;background:linear-gradient(135deg,#1668a4,#14b3c2);box-shadow:0 10px 22px rgba(20,150,170,.28)" style-hover="transform:translateY(-2px)">Salva modifiche</button>
+                <button onClick="{{ onAdminReset }}" style="font:inherit;font-weight:700;font-size:.97rem;color:#33506e;padding:12px 18px;border-radius:11px;border:1.5px solid #dce9f2;background:#fff;cursor:pointer" style-hover="border-color:#c0392b;color:#c0392b">Ripristina</button>
+                <sc-if value="{{ savedMsg }}" hint-placeholder-val="">
+                  <span style="color:#0f9d58;font-weight:700;font-size:.9rem">{{ savedMsg }}</span>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  ADMIN_PASS = 'admin';
+  STORE_KEY = 'gm_content_v1';
+
+  defaults(){
+    return {
+      heroEyebrow:'Impianti civili e industriali',
+      heroTitleA:'Impianti su misura,',
+      heroTitleB:'assistenza che non ti lascia ',
+      heroHL:'mai a secco',
+      heroSub:"G.M. Impianti di Giglioli Marco progetta, installa e mantiene impianti idraulici, termici, elettrici e fotovoltaici. Un unico referente, dal sopralluogo fino all'assistenza.",
+      phoneFisso:'0577 806300',
+      phone:'+39 000 000 0000',
+      email:'info@gmimpianti.it',
+      piva:'00000000000',
+      zona:'Provincia e zone limitrofe',
+      imgHero:'assets/logo.png',
+      imgPerche:'',
+      imgL1:'assets/lavoro-1-termico.jpg', imgL2:'assets/lavoro-2-fotovoltaico.jpg', imgL3:'assets/lavoro-3-bagno.jpg', imgL4:'assets/lavoro-4-centrale.jpg', imgL5:'assets/lavoro-5-clima.jpg', imgL6:'assets/lavoro-6-piscina.jpg',
+      s1t:'Idraulici e termoidraulici', s1d:"Reti idriche e scarichi, bagni, caldaie e impianti di riscaldamento a radiatori o a pavimento, realizzati a regola d'arte.",
+      s2t:'Riscaldamento e climatizzazione', s2d:"Pompe di calore, condizionatori e sistemi di climatizzazione efficienti, per il comfort tutto l'anno con consumi sotto controllo.",
+      s3t:'Fotovoltaico ed energie rinnovabili', s3d:'Impianti fotovoltaici con accumulo per produrre la tua energia, ridurre la bolletta e rendere la casa più indipendente.',
+      s4t:'Impianti elettrici', s4d:'Nuovi impianti e rifacimenti a norma, quadri, punti luce e predisposizioni domotiche, con certificazione di conformità.',
+      s5t:'Trattamento acque e piscine', s5d:'Addolcitori e sistemi di filtrazione per acqua più sana, impianti e manutenzione di piscine private e condominiali.',
+      s6t:'Manutenzione e assistenza', s6d:'Controlli periodici, pronto intervento e contratti di manutenzione per tenere ogni impianto sempre efficiente e sicuro.'
+    };
+  }
+
+  state = {
+    mobile:false,
+    form:{ nome:'', contatto:'', servizio:'', messaggio:'' },
+    sent:false, error:'',
+    content: this.defaults(),
+    adminDraft: this.defaults(),
+    adminOpen:false, authed:false, passInput:'', authError:'', savedMsg:'',
+    quote:{ service:'', ans:{}, note:'' }
+  };
+
+  componentDidMount(){
+    try{
+      const raw = localStorage.getItem(this.STORE_KEY);
+      if(raw){
+        const saved = JSON.parse(raw);
+        const def = this.defaults();
+        const merged = { ...def, ...saved };
+        // empty image fields fall back to defaults (so seeded gallery photos show)
+        Object.keys(def).forEach(k=>{ if(k.indexOf('img')===0 && !merged[k]) merged[k] = def[k]; });
+        this.setState({ content: merged, adminDraft: merged });
+      }
+    }catch(e){}
+
+    this._nav = this._root && this._root.querySelector('[data-r="nav"]');
+    this._onScroll = () => {
+      if(!this._nav) return;
+      const s = window.scrollY > 12;
+      this._nav.style.boxShadow = s ? '0 10px 34px rgba(19,49,90,.12)' : 'none';
+      this._nav.style.background = s ? 'rgba(255,255,255,.93)' : 'rgba(255,255,255,.7)';
+    };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    this._onScroll();
+
+    if(this._root){
+      const nodes = this._root.querySelectorAll('[data-reveal]');
+      nodes.forEach(n=>{
+        n.style.opacity = '0';
+        n.style.transform = 'translateY(28px)';
+        n.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)';
+      });
+      this._io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            const el = e.target;
+            el.style.transitionDelay = (el.getAttribute('data-reveal-delay')||0) + 'ms';
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            this._io.unobserve(el);
+          }
+        });
+      }, { threshold:0.1, rootMargin:'0px 0px -6% 0px' });
+      nodes.forEach(n=>this._io.observe(n));
+    }
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this._onScroll);
+    if(this._io) this._io.disconnect();
+  }
+
+  goTo(id){
+    const el = this._root && this._root.querySelector(id);
+    if(el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth' });
+  }
+
+  quoteCfg(){
+    return [
+      { key:'idraulica', label:'Idraulica & bagno', desc:'Perdite, sanitari, rifacimenti',
+        icon:'M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z',
+        qs:[
+          { id:'tipo', q:'Tipo di intervento', opts:['Riparazione o perdita','Sostituzione sanitari / caldaia','Rifacimento bagno completo','Nuovo impianto'] },
+          { id:'luogo', q:'Dove si trova', opts:['Abitazione','Ufficio / negozio','Condominio / industriale'] },
+          { id:'tempi', q:'Tempistica desiderata', opts:['Urgente','Entro un mese','Sto solo valutando'] } ] },
+      { key:'clima', label:'Riscaldamento & clima', desc:'Climatizzatori, pompe di calore',
+        icon:'M9.5 19a2.5 2.5 0 1 1 1.8-4.3M3 12h15a3 3 0 1 0-3-3M3 8h7a2.5 2.5 0 1 0-2.5-2.5',
+        qs:[
+          { id:'tipo', q:'Cosa ti serve', opts:['Climatizzatore mono-split','Multi-split (più stanze)','Pompa di calore','Da valutare insieme'] },
+          { id:'amb', q:'Ambienti da servire', opts:['1 ambiente','2–3 ambienti','4 o più'] },
+          { id:'tempi', q:'Tempistica desiderata', opts:['Urgente','Entro un mese','Sto solo valutando'] } ] },
+      { key:'fotovoltaico', label:'Fotovoltaico', desc:'Pannelli e accumulo',
+        icon:'M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4',
+        qs:[
+          { id:'obiett', q:'Obiettivo principale', opts:['Ridurre la bolletta','Indipendenza energetica','Con accumulo a batteria','Da valutare'] },
+          { id:'immob', q:'Tipo di immobile', opts:['Casa singola','Appartamento','Capannone / azienda'] },
+          { id:'tetto', q:'Tipo di copertura', opts:['Tetto inclinato (tegole)','Tetto piano','Non so'] } ] },
+      { key:'elettrico', label:'Impianti elettrici', desc:'Quadri, punti luce, domotica',
+        icon:'M13 2 4 14h7l-2 8 9-12h-7z',
+        qs:[
+          { id:'tipo', q:'Tipo di lavoro', opts:['Punto luce / presa','Quadro o intervento parziale','Impianto completo','Domotica'] },
+          { id:'stato', q:"Stato dell'immobile", opts:['Nuova costruzione','Ristrutturazione','Esistente da adeguare'] },
+          { id:'sup', q:'Superficie indicativa', opts:['Fino a 70 m²','70–120 m²','Oltre 120 m²'] } ] },
+      { key:'piscina', label:'Acque & piscine', desc:'Addolcitori, filtrazione, piscine',
+        icon:'M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 17c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2',
+        qs:[
+          { id:'esig', q:'Di cosa hai bisogno', opts:['Addolcitore / filtrazione','Manutenzione piscina','Locale tecnico piscina','Da valutare'] },
+          { id:'contesto', q:'Contesto', opts:['Privato','Condominio','Struttura ricettiva'] },
+          { id:'dim', q:'Dimensione', opts:['Piccola','Media','Grande'] } ] },
+      { key:'manutenzione', label:'Manutenzione', desc:'Controlli, contratti, pronto intervento',
+        icon:'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2.7-.7-.7-2.7 2.4-2.3z',
+        qs:[
+          { id:'serv', q:'Servizio richiesto', opts:['Controllo / revisione caldaia','Contratto manutenzione annuale','Pronto intervento guasto','Altro'] },
+          { id:'impianti', q:'Impianti interessati', opts:['Termico','Idraulico','Elettrico','Più impianti'] },
+          { id:'freq', q:'Frequenza', opts:['Una tantum','Periodica','Da definire'] } ] }
+    ];
+  }
+
+  renderVals(){
+    const c = this.state.content;
+    const qCfg = this.quoteCfg();
+    const qState = this.state.quote;
+    const qCur = qCfg.find(s=> s.key === qState.service) || null;
+    const qServices = qCfg.map(s=>({ key:s.key, label:s.label, desc:s.desc, icon:s.icon, active: qState.service === s.key ? true : '' }));
+    let qQuestions = [];
+    let qSummary = [];
+    let qReady = false, qAnsCount = 0, qTotal = 0;
+    if(qCur){
+      qTotal = qCur.qs.length;
+      qQuestions = qCur.qs.map(q=>({
+        id:q.id, q:q.q,
+        opts: q.opts.map((o,i)=>({ t:o, qid:q.id, idx:String(i), sel: qState.ans[q.id] === i ? true : '', unsel: qState.ans[q.id] === i ? '' : true }))
+      }));
+      qCur.qs.forEach(q=>{ const i = qState.ans[q.id]; if(i != null){ qAnsCount++; qSummary.push({ q:q.q, a:q.opts[i] }); } });
+      qReady = qAnsCount === qTotal;
+    }
+    const lavoriLabels = ['FOTO — impianto termico','FOTO — fotovoltaico','FOTO — bagno ristrutturato','FOTO — centrale termica','FOTO — climatizzazione','FOTO — locale piscina'];
+    const imgFieldDefs = [['imgHero','Foto principale (Hero)'],['imgPerche','Foto "Perché sceglierci"'],['imgL1','Lavoro 1'],['imgL2','Lavoro 2'],['imgL3','Lavoro 3'],['imgL4','Lavoro 4'],['imgL5','Lavoro 5'],['imgL6','Lavoro 6']];
+    return {
+      rootRef: (el)=>{ this._root = el; },
+      heroImg: c.imgHero ? React.createElement('img', { src: c.imgHero, alt: 'G.M. Impianti', style: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' } }) : null,
+      hasPerche: c.imgPerche ? true : '',
+      noPerche: c.imgPerche ? '' : true,
+      percheImg: c.imgPerche ? React.createElement('img', { src: c.imgPerche, alt: 'G.M. Impianti', style: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' } }) : null,
+      lavori: lavoriLabels.map((label, i)=>{
+        const img = c['imgL'+(i+1)] || '';
+        const caption = label.replace(/^FOTO\s*—\s*/, '').replace(/^\w/, m=> m.toUpperCase());
+        return { label, caption, img, has: img ? true : '', empty: img ? '' : true, delay: String((i % 3) * 80), imgEl: img ? React.createElement('img', { src: img, alt: caption, style: { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' } }) : null };
+      }),
+      imgFields: imgFieldDefs.map(([key,label])=>{ const val = this.state.adminDraft[key] || ''; return { key, label, val, empty: val ? '' : true, valEl: val ? React.createElement('img', { src: val, alt: label, style: { width:'100%', height:'118px', objectFit:'cover', display:'block' } }) : null }; }),
+      mobile: this.state.mobile,
+      toggleMobile: ()=> this.setState(s=>({ mobile: !s.mobile })),
+      onNav: (e)=>{
+        e.preventDefault();
+        const id = e.currentTarget.getAttribute('data-target');
+        this.setState({ mobile:false });
+        this.goTo(id);
+      },
+      c,
+      phoneTel: (c.phone || '').replace(/\s+/g, ''),
+      phoneFissoTel: (c.phoneFisso || '').replace(/\s+/g, ''),
+      quoteServices: qServices,
+      quoteHasService: qCur ? true : '',
+      quoteNoService: qCur ? '' : true,
+      quoteCurLabel: qCur ? qCur.label : '',
+      quoteQuestions: qQuestions,
+      quoteSummary: qSummary,
+      quoteHasSummary: qSummary.length ? true : '',
+      quoteEmptySummary: qSummary.length ? '' : true,
+      quoteReady: qReady ? true : '',
+      quoteIncomplete: (qSummary.length && !qReady) ? true : '',
+      quoteProgress: qCur ? (qAnsCount + ' / ' + qTotal + ' risposte') : '',
+      quoteNote: qState.note,
+      onQuoteNote: (e)=> this.setState(s=>({ quote:{ ...s.quote, note: e.target.value } })),
+      onQuotePick: (e)=>{ const k = e.currentTarget.getAttribute('data-key'); this.setState({ quote:{ service:k, ans:{}, note:'' } }); },
+      onQuoteOpt: (e)=>{ const qid = e.currentTarget.getAttribute('data-qid'); const idx = +e.currentTarget.getAttribute('data-idx'); this.setState(s=>({ quote:{ ...s.quote, ans:{ ...s.quote.ans, [qid]: idx } } })); },
+      onQuoteReset: ()=> this.setState({ quote:{ service:'', ans:{}, note:'' } }),
+      onQuoteRequest: ()=>{
+        const map = { idraulica:'Impianti idraulici / termoidraulici', clima:'Riscaldamento e climatizzazione', fotovoltaico:'Fotovoltaico ed energie rinnovabili', elettrico:'Impianti elettrici', piscina:'Trattamento acque / piscine', manutenzione:'Manutenzione e assistenza' };
+        const cur = this.quoteCfg().find(s=> s.key === this.state.quote.service);
+        let msg = 'Richiesta di preventivo';
+        if(cur){
+          msg += ' — ' + cur.label + '\n';
+          cur.qs.forEach(q=>{ const i = this.state.quote.ans[q.id]; if(i != null) msg += '• ' + q.q + ': ' + q.opts[i] + '\n'; });
+          const note = (this.state.quote.note || '').trim();
+          if(note) msg += '\nNote: ' + note;
+        }
+        this.setState(s=>({ form:{ ...s.form, servizio: map[this.state.quote.service] || '', messaggio: msg.trim() } }));
+        this.goTo('#contatti');
+      },
+      form: this.state.form,
+      onField: (e)=>{
+        const { name, value } = e.target;
+        this.setState(s=>({ form:{ ...s.form, [name]:value }, error:'' }));
+      },
+      onSubmit: (e)=>{
+        e.preventDefault();
+        const f = this.state.form;
+        if(!f.nome.trim() || !f.contatto.trim()){
+          this.setState({ error:'Inserisci almeno il nome e un recapito (email o telefono).' });
+          return;
+        }
+        this.setState({ sent:true });
+      },
+      sent: this.state.sent,
+      showForm: !this.state.sent,
+      error: this.state.error,
+      year: new Date().getFullYear(),
+
+      adminOpen: this.state.adminOpen,
+      authed: this.state.authed,
+      notAuthed: !this.state.authed,
+      passInput: this.state.passInput,
+      authError: this.state.authError,
+      savedMsg: this.state.savedMsg,
+      draft: this.state.adminDraft,
+      openAdmin: ()=> this.setState({ adminOpen:true, savedMsg:'', authError:'' }),
+      closeAdmin: ()=> this.setState({ adminOpen:false }),
+      onPassField: (e)=> this.setState({ passInput:e.target.value, authError:'' }),
+      onLogin: (e)=>{
+        if(e) e.preventDefault();
+        if(this.state.passInput === this.ADMIN_PASS){
+          this.setState({ authed:true, passInput:'', authError:'' });
+        } else {
+          this.setState({ authError:'Password errata. Riprova.' });
+        }
+      },
+      onAdminField: (e)=>{
+        const { name, value } = e.target;
+        this.setState(s=>({ adminDraft:{ ...s.adminDraft, [name]:value }, savedMsg:'' }));
+      },
+      onAdminImage: (e)=>{
+        const key = e.target.name;
+        const file = e.target.files && e.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev)=>{
+          const img = new Image();
+          img.onload = ()=>{
+            const max = 1400;
+            let w = img.width, h = img.height;
+            if(w > max || h > max){ const r = Math.min(max/w, max/h); w = Math.round(w*r); h = Math.round(h*r); }
+            let dataUrl;
+            try{
+              const cv = document.createElement('canvas');
+              cv.width = w; cv.height = h;
+              cv.getContext('2d').drawImage(img, 0, 0, w, h);
+              dataUrl = cv.toDataURL('image/jpeg', 0.82);
+            }catch(_){ dataUrl = ev.target.result; }
+            this.setState(s=>({ adminDraft:{ ...s.adminDraft, [key]: dataUrl }, savedMsg:'' }));
+          };
+          img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+        e.target.value = '';
+      },
+      onAdminImageRemove: (e)=>{
+        const key = e.currentTarget.getAttribute('data-key');
+        this.setState(s=>({ adminDraft:{ ...s.adminDraft, [key]: '' }, savedMsg:'' }));
+      },
+      onAdminSave: ()=>{
+        const d = { ...this.state.adminDraft };
+        let ok = true;
+        try{ localStorage.setItem(this.STORE_KEY, JSON.stringify(d)); }catch(e){ ok = false; }
+        this.setState({ content: d, savedMsg: ok ? 'Modifiche salvate ✓' : 'Applicate, ma le immagini sono troppo pesanti per salvarle in modo permanente.' });
+      },
+      onAdminReset: ()=>{
+        try{ localStorage.removeItem(this.STORE_KEY); }catch(e){}
+        const def = this.defaults();
+        this.setState({ content: def, adminDraft: def, savedMsg:'Ripristinato ai valori predefiniti.' });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
