@@ -573,7 +573,7 @@ class Component extends DCLogic {
       s3t:'Solare termico ed energie rinnovabili', s3d:'Pannelli solari termici e soluzioni rinnovabili per produrre acqua calda, ridurre la bolletta e rendere la casa più efficiente.',
       s4t:'Trattamento acque e piscine', s4d:'Addolcitori e sistemi di filtrazione per acqua più sana, impianti e manutenzione di piscine private e condominiali.',
       s5t:'Manutenzione e assistenza', s5d:'Controlli periodici, pronto intervento e contratti di manutenzione per tenere ogni impianto sempre efficiente e sicuro.',
-      percheTitle:'Affidabilità artigiana,<br>visione moderna',
+      percheTitle:'Affidabilità artigiana, visione moderna',
       perche1t:'Un unico interlocutore', perche1d:'Idraulica, riscaldamento, climatizzazione e solare termico coordinati da una sola persona di fiducia.',
       perche2t:'Materiali certificati', perche2d:'Componenti di marchi affidabili e installazioni conformi alle normative vigenti.',
       perche3t:'Pronto intervento', perche3d:'Interventi rapidi su guasti e manutenzioni programmate per non lasciarti mai a piedi.',
@@ -735,7 +735,7 @@ class Component extends DCLogic {
         this.setState({ mobile:false });
         this.goTo(id);
       },
-      c,
+      c: { ...c, percheTitle: String(c.percheTitle || '').replace(/<br\s*\/?>/gi, ' ') },
       phoneTel: (c.phone || '').replace(/\s+/g, ''),
       phoneWA: (c.phone || '').replace(/[\s+\-]/g, ''),
       whatsappTel: (c.phone || '').replace(/[^0-9]/g, ''),
